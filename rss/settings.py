@@ -75,10 +75,19 @@ WSGI_APPLICATION = 'rss.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'rssfeed',
+        'USER': 'chris',
+        'PASSWORD': 'Ichi1Go5',
+        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '', 
     }
 }
+
+DATABASE_URL = 'postgresql:///rssfeed'
+
+DATABASES = {'default': dj_database_url.config(default=DATABASE_URL)}
+
 
 AUTH_PASSWORD_VALIDATORS = (
     {
@@ -99,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = (
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
