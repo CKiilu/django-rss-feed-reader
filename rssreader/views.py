@@ -10,7 +10,8 @@ import feedparser
 def index(request):
 	feeds = SourceUrl.objects.all()
 	for objects in feeds:
-		objects.url = feedparser.parse(objects.url + ".rss")
+		objects.url = feedparser.parse(objects.url)
+		objects.url = objects.url.entries[0].summary_detail.value
 	context = {
 		"feeds": feeds,
 
