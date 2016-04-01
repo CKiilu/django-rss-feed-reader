@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div style="padding:10%;" class="text-center">
+	<h1>Choose your feed:</h1>
+
+	<form method="POST" action="" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ form.as_p }}
+
+		<input type="submit" class="button" value="Create feed">
+	</form>
+</div>
+{% endblock content %}

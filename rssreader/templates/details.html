@@ -3,12 +3,12 @@
 
 {% block content %}
 
-	<!-- {{ feeds.url }} -->
+	<!-- {{ feeds_url }} -->
 
 	<h3>{{ feeds.name }} </h3>
-	{% for data in  feeds.url %}
+	{% for data in  feeds_url %}
 	<a href=" {{ data.link }}"><h4>{{ data.title }}</h4></a>
-	{{ data.summary }}<br/><br/>
+	<div>{{ data.summary }}</div><br/><br/>
 	{% endfor %}
 
 {% endblock content %}

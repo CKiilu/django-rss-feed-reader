@@ -20,9 +20,11 @@
 	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
 	  fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
+
+		<a href="{% url 'rssreader:home' %}"><h1>Feeds</h1></a>
 	
 
-		<div class="container">
+		<div class="container text-justify">
 			{% block content %}
 			{% endblock content%}
 		</div>
