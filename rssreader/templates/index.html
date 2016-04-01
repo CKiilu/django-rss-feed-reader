@@ -15,7 +15,7 @@
 
 {% for feed in feeds %}
 
-	<h3>{{ feed.name }} </h3>
+	<a href = "{{ feed.get_absolute_url }}"><h3>{{ feed.name }} </h3></a>
 	{{ feed.url }}
 
 {% endfor %}

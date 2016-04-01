@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 
 from .models import SourceUrl
 from .forms import FeedForm
@@ -24,3 +24,13 @@ def index(request):
 		"form": form,
 	}
 	return render(request, "index.html", context)
+def details(request, id = None):
+	feeds = get_object_or_404(SourceUrl, id = id)
+	
+	feeds.url = feedparser.parse(feeds.url)
+	feeds.url = feeds.url.entries
+
+	context = {
+		"feeds": feeds,
+	}
+	return render(request, "details.html", context)
