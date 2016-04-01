@@ -7,6 +7,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 import feedparser
 
+from django.template import Template, Context
+
 from bs4 import BeautifulSoup
 
 
@@ -33,6 +35,10 @@ def details(request, id = None):
 	feeds_url = feeds.url.entries
 
 	entries = []
+	delete = "Delete Feed"
+	delete_button = Template("""
+			<a href="{{ instance.get_absolute_url }}delete/ " class="button">{{ delete }}</a>
+			""").render(Context({"delete": delete}))
 
 	for objects in feeds_url:
 		soup = BeautifulSoup(objects.summary, 'html.parser')
@@ -43,15 +49,15 @@ def details(request, id = None):
 	context = {
 		"feeds": feeds,
 		"feeds_url": feeds_url,
-		"entries": entries
+		"entries": entries,
+		"delete_button": delete_button,
 	}
 	return render(request, "details.html", context)
 
 def post_delete(request,id=None):
-	instance = get_object_or_404(Post, id=id)
+	instance = get_object_or_404(SourceUrl, id=id)
 	instance.delete()
-	messages.success(request, "Successfully deleted.")
-	return redirect("rssreader:index")
+	return redirect("rssreader:home")
 
 def post_create(request):
 	# if not request.user.is_authenticated():
