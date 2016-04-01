@@ -3,8 +3,9 @@
 
 {% block content %}
 
+	<!-- {{ feeds.url }} -->
+
 	<h3>{{ feeds.name }} </h3>
-	{{ feeds.url }}
 	{% for data in  feeds.url %}
 	<a href=" {{ data.link }}"><h4>{{ data.title }}</h4></a>
 	{{ data.summary }}<br/><br/>
